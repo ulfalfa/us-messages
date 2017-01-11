@@ -1,0 +1,16 @@
+{
+	"name": "us-messages",
+	"version": "0.0.1",
+	"description": "Message formatter with localized values",
+	"main": "index.js",
+	"author": "ulfalfa",
+	"license": "MIT",
+	"dependencies": {
+		"debug": "^2.6.0",
+		"extend": "^3.0.0",
+		"handlebars": "^4.0.6",
+		"moment": "^2.17.1",
+		"numeral": "^2.0.4",
+		"us-value-mapper": "^0.0.1"
+	}
+}
