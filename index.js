@@ -10,13 +10,10 @@ const inspect = (obj => {
 });
 
 
-
-
-
-
 class Messenger {
 	constructor(definition = {}, options = {}) {
 		this._definition = definition;
+		this.Handlebars = Handlebars.create();
 
 		this._locales = require('./locales');
 		this._options = options;
@@ -31,7 +28,7 @@ class Messenger {
 				debug('compiling message', key);
 				let templateString = definition.messages[key];
 				templateString = templateString.replace(repl, 'value.[$1]');
-				this._templates[key] = Handlebars.compile(templateString, {
+				this._templates[key] = this.Handlebars.compile(templateString, {
 					locale: this._options.locale
 				});
 			});
@@ -55,7 +52,7 @@ class Messenger {
 	registerHelper(helperLibs) {
 		helperLibs.forEach(lib => {
 			let Helper = require('./lib/' + lib);
-			Helper.registerWith(Handlebars, this.settings);
+			Helper.registerWith(this.Handlebars, this.settings);
 		});
 	}
 
@@ -65,17 +62,32 @@ class Messenger {
 		if (typeof template === 'undefined') {
 			throw (new Error('template ' + txtId + ' not defined'));
 		}
-		return template({
-			value: data
-		});
+		if (data.length === 1 && typeof data[0] === 'object') {
+			return template(data[0]);
+		} else {
+			return template({
+				value: data
+			});
+
+		}
 
 	}
 
-	compile(templateString) {
-		return Handlebars.compile(templateString);
+	template(txtId) {
+		let template = this._templates[txtId];
+
+		if (typeof template === 'undefined') {
+			throw (new Error('template ' + txtId + ' not defined'));
+		}
+
+		return tempalte;
 	}
 
-
+	compile(message) {
+		return this.Handlebars.compile(message);
+	}
 }
+
+
 
 module.exports = Messenger;

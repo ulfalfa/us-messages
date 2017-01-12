@@ -1,7 +1,8 @@
 module.exports = {
 	messages: {
 		"DOORS_OPEN": 'Es {{pluralize "IS_DOORS" $0}} in Zahlen {{number $0}} am {{shortDate $1}} offen',
-		"MAPPING": 'true ist {{map "ONOFF" $0}} und 4 ist {{map "VALUES" $1}} und true ist {{map "true=>gruen|false=aus" $2}}'
+		"MAPPING": 'true ist {{map "ONOFF" $0}} und 4 ist {{map "VALUES" $1}} und true ist {{map "true=>gruen|false=aus" $2}}',
+		"TESTRENDER": 'Der Wert ist {{val}} oder {{val.val}}!'
 	},
 	plurals: {
 		"IS_DOORS": {

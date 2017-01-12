@@ -1,6 +1,6 @@
 {
 	"name": "us-messages",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"description": "Message formatter with localized values",
 	"main": "index.js",
 	"author": "ulfalfa",
@@ -12,5 +12,6 @@
 		"moment": "^2.17.1",
 		"numeral": "^2.0.4",
 		"us-value-mapper": "^0.0.1"
-	}
+	},
+	"repository": "https://github.com/ulfalfa/us-messages.git"
 }

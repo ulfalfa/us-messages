@@ -7,6 +7,8 @@ const inspect = (obj => {
 		depth: null
 	})
 });
+const moment = require('moment');
+
 
 //HandlebarsIntl.registerWith(Handlebars);
 
@@ -19,4 +21,16 @@ console.log(msg.render('MAPPING', true, 4, true));
 var tpl = msg.compile('{{map "ONOFF" value}}');
 console.log(tpl({
 	value: true
+}));
+
+console.log(msg.render('TESTRENDER', {
+	val: {
+		val: 'Hello World'
+	}
+}))
+
+var just = moment().add(34, 'h');
+var tpl = msg.compile('{{ago value}}');
+console.log(tpl({
+	value: just
 }));
