@@ -1,39 +1,38 @@
-const debug = require('DEBUG')('intl-messages');
+const debug = require('debug')('intl-messages');
 const Handlebars = require('handlebars');
 const util = require('util'),
 	extend = require('extend');
 
 const inspect = (obj => {
-	return util.inspect(obj, {
-		depth: null
-	})
+  return util.inspect(obj, {
+   depth: null
+  });
 });
 
-
 class Messenger {
-	constructor(definition = {}, options = {}) {
-		this._definition = definition;
-		this.Handlebars = Handlebars.create();
+  constructor(definition = {}, options = {}) {
+   this._definition = definition;
+   this.Handlebars = Handlebars.create();
 
-		this._locales = require('./locales');
-		this._options = options;
-		this.locale(options.locale || 'de-DE');
-		this.registerHelper(['hb_pluralize', 'hbDates', 'hbNumber', 'hbMapper']);
+   this._locales = require('./locales');
+   this._options = options;
+   this.locale(options.locale || 'de-DE');
+   this.registerHelper(['hb_pluralize', 'hbDates', 'hbNumber', 'hbMapper']);
 
-		//replace placeholder $x in templates and compile
-		this._templates = {};
-		let repl = /\$(\d*)/g;
-		if (definition.hasOwnProperty('messages')) {
-			Object.keys(definition.messages).forEach((key) => {
-				debug('compiling message', key);
-				let templateString = definition.messages[key];
-				templateString = templateString.replace(repl, 'value.[$1]');
-				this._templates[key] = this.Handlebars.compile(templateString, {
-					locale: this._options.locale
-				});
-			});
-		}
-	}
+   //replace placeholder $x in templates and compile
+   this._templates = {};
+   let repl = /\$(\d*)/g;
+   if (definition.hasOwnProperty('messages')) {
+    Object.keys(definition.messages).forEach((key) => {
+     debug('compiling message', key);
+     let templateString = definition.messages[key];
+     templateString = templateString.replace(repl, 'value.[$1]');
+     this._templates[key] = this.Handlebars.compile(templateString, {
+      locale: this._options.locale
+     });
+    });
+   }
+  }
 
 	locale(locale = null) {
 		if (locale) {

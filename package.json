@@ -1,6 +1,6 @@
 {
 	"name": "us-messages",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Message formatter with localized values",
 	"main": "index.js",
 	"author": "ulfalfa",
